@@ -520,6 +520,7 @@ nano /etc/resolv.conf
 ![DNS12](SS/DNS/12.png)
 
 ubahlah jadi seperti ini:
+
 ![DNS13](SS/DNS/13.png)
 
 **Langkah 7: Restart Layanan Bind9**
@@ -534,5 +535,6 @@ systemctl restart bind9
 ```
 apt-get install dnsutils
 ```
+**Langkah 2: Lakukan pengujian dengan nslookup**
 ![DNS15](SS/DNS/15.png)
 ![DNS16](SS/DNS/16.png)
