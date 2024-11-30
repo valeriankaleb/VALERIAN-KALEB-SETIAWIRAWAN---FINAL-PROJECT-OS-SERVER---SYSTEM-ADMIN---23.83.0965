@@ -33,14 +33,6 @@ nano /etc/ssh/sshd_config
 ![SSH2](SS/SSH/2.png)
 
 **Langkah 2: Edit Konfigurasi seperti dibawah ini**
-```
-Include /etc/ssh/sshd_config.d/*.conf
-
-Port 4646
-#AddressFamily any
-#ListenAddress 0.0.0.0
-#ListenAddress ::
-```
 ![SSH3](SS/SSH/3.png)
 
 Saya mengubah Port dari 22 ke 4646 untuk mengamankanya agar tidak menggunakan default port.
@@ -124,6 +116,7 @@ nano /etc/default/isc-dhcp-server
 ![DHCP5](SS/DHCP/5.png)
 
 Sesuaikan dengan interface yang anda gunakan
+
 ![DHCP6](SS/DHCP/6.png)
 
 **Langkah 4: Restart Layanan DHCPD**
@@ -166,6 +159,7 @@ systemctl status mysql.service
 mysql_secure_installation
 ```
 **Langkah 2: Ikuti Konfigurasi dibawah ini**
+
 Peringatan: Mulai Juli 2022, sebuah kesalahan akan terjadi ketika Anda menjalankan skrip `mysql_secure_installation` tanpa konfigurasi lebih lanjut. Alasannya adalah skrip ini akan mencoba mengatur kata sandi untuk akun MySQL root instalasi, tetapi, secara default pada instalasi Ubuntu, akun ini tidak dikonfigurasikan untuk terhubung menggunakan kata sandi.
 
 Hal ini akan membawa skrip ke dalam perulangan rekursif yang hanya dapat Anda hentikan dengan menutup jendela terminal Anda.
@@ -468,8 +462,8 @@ Tampilan dari Postingan yang ada di Webserver
 apt update
 apt-get install bind9
 ```
-![Web1](SS/Web/1.png)
-![Web2](SS/Web/2.png)
+![DNS1](SS/DNS/1.png)
+![DNS2](SS/DNS/2.png)
 
 ### 5.2 Konfigurasi BIND9
 
@@ -479,16 +473,16 @@ cd /etc/bind
 cp db.local db.forward
 cp db.127 db.reverse
 ```
-![Web3](SS/Web/3.png)
+![DNS3](SS/DNS/3.png)
 
 **Langkah 2: Konfigurasi file db.forward**
 ```
 nano db.forward
 ```
-![Web4](SS/Web/4.png)
+![DNS4](SS/DNS/4.png)
 
 Ubahlah Konfigurasi seperti dibawah ini:
-![Web5](SS/Web/5.png)
+![DNS5](SS/DNS/5.png)
 
 disesuaikan dengan domain anda
 
@@ -496,43 +490,43 @@ disesuaikan dengan domain anda
 ```
 nano db.reverse
 ```
-![Web6](SS/Web/6.png)
+![DNS6](SS/DNS/6.png)
 
 ubahlah Konfigurasi seperti dibawah ini:
-![Web7](SS/Web/7.png)
+![DNS7](SS/DNS/7.png)
 
 **Langkah 4: Buka Konfigurasi named.conf.local untuk konfigurasi DNS Zones**
 ```
 nano named.conf.local
 ```
-![Web8](SS/Web/8.png)
+![DNS8](SS/DNS/8.png)
 
 Ubahlah isi file konfigurasi seperti dibawah ini:
-![Web9](SS/Web/9.png)
+![DNS9](SS/DNS/9.png)
 
 **Langkah 5: Konfigurasi Forwarders**
 ```
 nano named.conf.options
 ```
-![Web10](SS/Web/10.png)
+![DNS10](SS/DNS/10.png)
 
 tambahkan DNS forwarders
-![Web11](SS/Web/11.png)
+![DNS11](SS/DNS/11.png)
 
 **Langkah 6: Konfigurasi DNS diperangkat Server**
 ```
 nano /etc/resolv.conf
 ```
-![Web12](SS/Web/12.png)
+![DNS12](SS/DNS/12.png)
 
 ubahlah jadi seperti ini:
-![Web13](SS/Web/13.png)
+![DNS13](SS/DNS/13.png)
 
 **Langkah 7: Restart Layanan Bind9**
 ```
 systemctl restart bind9
 ```
-![Web14](SS/Web/14.png)
+![DNS14](SS/DNS/14.png)
 
 ### 5.3 Pengujian Konfigurasi DNS
 
@@ -540,5 +534,5 @@ systemctl restart bind9
 ```
 apt-get install dnsutils
 ```
-![Web15](SS/Web/15.png)
-![Web16](SS/Web/16.png)
+![DNS15](SS/DNS/15.png)
+![DNS16](SS/DNS/16.png)
