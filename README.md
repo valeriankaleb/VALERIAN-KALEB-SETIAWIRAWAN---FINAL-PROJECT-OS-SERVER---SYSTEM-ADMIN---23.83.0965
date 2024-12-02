@@ -127,7 +127,7 @@ systemctl restart isc-dhcp-server
 
 ### 2.3 Menguji Konfigurasi
 
-1.Dari sisi Client anda bisa melakukan Request IP ke DHCP POOL(saya menggunakan Windows sebagai Client)
+Cek Status DHCP Server
 ```
 systemctl status isc-dhcp-server
 ```
