@@ -1,10 +1,13 @@
 ## VALERIAN KALEB SETIAWIRAWAN---FINAL-PROJECT-OS-SERVER-&-SYSTEM-ADMIN---23.83.0965
-# Judul : Langkah-langkah instalasi SSH Server, DHCP Server, Database Server, Web Server, dan DNS Server
+# Judul : - -
 
 
 Repository ini berisi Dokumentasi Instalasi dan Konfigurasi berbagai layanan Server, seperti SSH, DNS, DHCP, WEB, Database, dll. Saya menggunakan Ubuntu Server versi 22.04 sebagai base operasi sistem saya.
-
 Beberapa Service yang dijelaskan dalam Repository ini masih dalam proses pengembangan, artinya masih ada beberapa service yang progressnya masih 50% jadi, kedepannya akan dikembangkan lagi.
+
+Progress:
+- 19 November 2024: Penentuan Server yang di Install
+- 29 November 2024: Penyelesaian progress pertama
 
 ## Daftar Isi
 1. [Instalasi dan Konfigurasi SSH](#1-instalasi-dan-konfigurasi-ssh-server)
