@@ -1,5 +1,5 @@
 ## VALERIAN KALEB SETIAWIRAWAN---FINAL-PROJECT-OS-SERVER-&-SYSTEM-ADMIN---23.83.0965
-# Judul : - -
+# Judul : Instalasi layanan server untuk hosting web delivery makanan
 
 
 Repository ini berisi Dokumentasi Instalasi dan Konfigurasi berbagai layanan Server, seperti SSH, DNS, DHCP, WEB, Database, dll. Saya menggunakan Ubuntu Server versi 22.04 sebagai base operasi sistem saya.
