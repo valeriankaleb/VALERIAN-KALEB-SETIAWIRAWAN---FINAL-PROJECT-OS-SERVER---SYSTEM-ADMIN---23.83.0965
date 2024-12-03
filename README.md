@@ -1,8 +1,13 @@
-# VALERIAN KALEB SETIAWIRAWAN---FINAL-PROJECT-OS-SERVER-&-SYSTEM-ADMIN---23.83.0965
+## VALERIAN KALEB SETIAWIRAWAN---FINAL-PROJECT-OS-SERVER-&-SYSTEM-ADMIN---23.83.0965
+# Judul : Installasi layanan web server untuk hosting web warung makan
+
 
 Repository ini berisi Dokumentasi Instalasi dan Konfigurasi berbagai layanan Server, seperti SSH, DNS, DHCP, WEB, Database, dll. Saya menggunakan Ubuntu Server versi 22.04 sebagai base operasi sistem saya.
-
 Beberapa Service yang dijelaskan dalam Repository ini masih dalam proses pengembangan, artinya masih ada beberapa service yang progressnya masih 50% jadi, kedepannya akan dikembangkan lagi.
+
+Progress:
+- 19 November 2024: Penentuan Tema yang di Install
+- 29 November 2024: Penyelesaian progress pertama
 
 ## Daftar Isi
 1. [Instalasi dan Konfigurasi SSH](#1-instalasi-dan-konfigurasi-ssh-server)
@@ -127,7 +132,7 @@ systemctl restart isc-dhcp-server
 
 ### 2.3 Menguji Konfigurasi
 
-1.Dari sisi Client anda bisa melakukan Request IP ke DHCP POOL(saya menggunakan Windows sebagai Client)
+Cek Status DHCP Server
 ```
 systemctl status isc-dhcp-server
 ```
