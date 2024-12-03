@@ -1,12 +1,12 @@
 ## VALERIAN KALEB SETIAWIRAWAN---FINAL-PROJECT-OS-SERVER-&-SYSTEM-ADMIN---23.83.0965
-# Judul : Installasi layanan web server untuk hosting web warung makan
+# Judul : - -
 
 
 Repository ini berisi Dokumentasi Instalasi dan Konfigurasi berbagai layanan Server, seperti SSH, DNS, DHCP, WEB, Database, dll. Saya menggunakan Ubuntu Server versi 22.04 sebagai base operasi sistem saya.
 Beberapa Service yang dijelaskan dalam Repository ini masih dalam proses pengembangan, artinya masih ada beberapa service yang progressnya masih 50% jadi, kedepannya akan dikembangkan lagi.
 
 Progress:
-- 19 November 2024: Penentuan Tema yang di Install
+- 19 November 2024: Penentuan tema yang di Install
 - 29 November 2024: Penyelesaian progress pertama
 
 ## Daftar Isi
