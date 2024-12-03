@@ -6,7 +6,7 @@ Repository ini berisi Dokumentasi Instalasi dan Konfigurasi berbagai layanan Ser
 Beberapa Service yang dijelaskan dalam Repository ini masih dalam proses pengembangan, artinya masih ada beberapa service yang progressnya masih 50% jadi, kedepannya akan dikembangkan lagi.
 
 Progress:
-- 19 November 2024: Penentuan Server yang di Install
+- 19 November 2024: Penentuan tema yang di Install
 - 29 November 2024: Penyelesaian progress pertama
 
 ## Daftar Isi
