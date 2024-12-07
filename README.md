@@ -7,7 +7,9 @@ Beberapa Service yang dijelaskan dalam Repository ini masih dalam proses pengemb
 
 Progress:
 - 19 November 2024: Penentuan tema yang di Install
-- 29 November 2024: Penyelesaian progress pertama
+- 29 November 2024: Penyelesaian tahap pertama
+- 3 December 2024: Pergantian Tema
+- 7 December 2024: Penyelesaian tahap kedua
 
 ## Daftar Isi
 1. [Instalasi dan Konfigurasi SSH](#1-instalasi-dan-konfigurasi-ssh-server)
@@ -38,6 +40,7 @@ nano /etc/ssh/sshd_config
 ![SSH2](SS/SSH/2.png)
 
 **Langkah 2: Edit Konfigurasi seperti dibawah ini**
+
 ![SSH3](SS/SSH/3.png)
 
 Saya mengubah Port dari 22 ke 4646 untuk mengamankanya agar tidak menggunakan default port.
@@ -432,29 +435,33 @@ Edit file wordpress.conf dan tambahkan baris di bawah ini
 Aktifkan WordPress.conf dan nonaktifkan 000-default.conf dan muat ulang layanan apache.
 ```
 a2ensite wordpress.conf
-a2dissite 000-default.conf
-service apache2 reload
 ```
 ![Web27](SS/Web/27.png)
 
 **Langkah 12: Instalasi Admin Wordpress**
 
-1. Pilih Bahasa yang diinginkan 
+1. Buka web wordpress pada browser dengan mengetikkan
+```
+http://your_domain_or_IP/wordpress
+```
+pada kolom pencarian
+
+2. Pilih Bahasa yang diinginkan 
 ![Web28](SS/Web/28.png)
 
-2. Isi Nama situs,Password,dan Email
+3. Isi Nama situs,Password,dan Email
 ![Web29](SS/Web/29.png)
 
-3. Login dengan Akun yang sudah dibuat
+4. Login dengan Akun yang sudah dibuat
 ![Web30](SS/Web/30.png)
 
-4. CMS sudah Berhasil diinstall
+5. CMS sudah Berhasil diinstall
 ![Web31](SS/Web/31.png)
 
 
 ### 4.4 Pengujian Konfigurasi Apache2
 
-Tampilan dari Postingan yang ada di Webserver
+Uji coba tampilan pada webserver
 
 ![Web32](SS/Web/32.png)
 
@@ -543,3 +550,5 @@ apt-get install dnsutils
 **Langkah 2: Lakukan pengujian dengan nslookup**
 ![DNS15](SS/DNS/15.png)
 ![DNS16](SS/DNS/16.png)
+
+ini menunjukkan bahwa Konfigurasi DNS untuk mengubah alamat domain ke IP dan sebaliknya(foward&reverse) sudah berjalan dengan baik
