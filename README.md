@@ -488,7 +488,7 @@ Edit file wordpress.conf dan tambahkan baris di bawah ini
 Aktifkan WordPress.conf dan muat ulang layanan apache.
 ```
 a2ensite wordpress.conf
-systemctl restart apache2
+systemctl reload apache2
 ```
 ![Web27](SS/Web/27.png)
 
@@ -634,15 +634,15 @@ chmod -R 755 /var/www/html/"nama direktori web"/
 cd /etc/apache2/sites-available
 cp 000-default.conf web.conf
 ```
-Masuk kedalam file wordpress.conf dan ganti DocumentRoot menjadi halaman web mu
+Masuk kedalam file web.conf dan ganti DocumentRoot menjadi halaman web mu
 ```
-nano wordpress.conf
+nano web.conf
 DocumentRoot /var/www/html/"nama direktori web"
 ```
 Aktifkan web.conf dan muat ulang layanan apache.
 ```
-a2ensite wordpress.conf
-systemctl restart apache2
+a2ensite web.conf
+systemctl reload apache2
 ```
 
 ### 6.2 Tampilan web
