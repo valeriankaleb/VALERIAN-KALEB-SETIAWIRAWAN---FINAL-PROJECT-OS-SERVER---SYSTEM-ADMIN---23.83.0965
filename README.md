@@ -171,7 +171,7 @@ sudo chown nobody:nogroup /home/ftpnic/ftp
 sudo chmod a-w /home/ftpnic/ftp
 ```
 ![FTP7](SS/FTP/7.png)
-![FTP8](SS/FTP/78.png)
+![FTP8](SS/FTP/8.png)
 ![FTP9](SS/FTP/9.png)
 
 **Langkah 6: Menambahkan user baru ke list**
