@@ -12,13 +12,13 @@ Progress:
 - 14 December 2024: Penyelesaian tahap ketiga
 
 # Versi layanan yang digunakan
-Mysql: mysql  Ver 8.0.40-0ubuntu0.22.04.1 for Linux on x86_64
-PHP: PHP 8.1.2-1ubuntu2.20 (cli)
-Apache: Apache/2.4.52 (Ubuntu)
-Operation System: Ubuntu Server 22.04 LTS
-vsftpd: version 3.0.5
-Bind9: BIND 9.18.28-0ubuntu0.22.04.1-Ubuntu (Extended Support Version)
-OpenSSH: OpenSSH_8.9p1 Ubuntu-3ubuntu0.10
+1. Mysql: mysql  Ver 8.0.40-0ubuntu0.22.04.1 for Linux on x86_64
+2. PHP: PHP 8.1.2-1ubuntu2.20 (cli)
+3. Apache: Apache/2.4.52 (Ubuntu)
+4. Operation System: Ubuntu Server 22.04 LTS
+5. vsftpd: version 3.0.5
+6. Bind9: BIND 9.18.28-0ubuntu0.22.04.1-Ubuntu (Extended Support Version)
+7. OpenSSH: OpenSSH_8.9p1 Ubuntu-3ubuntu0.10
 
 ## Daftar Isi
 1. [Instalasi dan Konfigurasi SSH](#1-instalasi-dan-konfigurasi-ssh-server)
