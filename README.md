@@ -104,7 +104,7 @@ apt install vsftpd
 
 
 ### 2.2 Konfigurasi vsftpd
-**Langkah 1: Buka Direktori Konfigurasi DHCPD**
+**Langkah 1: Buka Direktori Konfigurasi vsftpd**
 ```
 nano /etc/vsftpd.conf
 ```
