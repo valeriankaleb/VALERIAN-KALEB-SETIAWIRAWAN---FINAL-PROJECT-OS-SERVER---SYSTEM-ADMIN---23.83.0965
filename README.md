@@ -664,7 +664,7 @@ systemctl restart apache2
 ![image](SS/Tampilan/A3.png)
 
 #### Tampilan Login
-![image](SS/Tampilan/login.png)
+![image](SS/Tampilan/Login.png)
 
 #### Tampilan Registrasi
 ![image](SS/Tampilan/Registration.png)
