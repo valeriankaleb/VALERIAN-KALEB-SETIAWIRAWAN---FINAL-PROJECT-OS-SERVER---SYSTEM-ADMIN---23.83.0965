@@ -4,6 +4,8 @@
 Repository ini berisi Dokumentasi Instalasi dan Konfigurasi berbagai layanan Server, seperti SSH, DNS, FTP, WEB, Database, dll. Saya menggunakan Ubuntu Server versi 22.04 sebagai base operasi sistem saya.
 Beberapa Service yang dijelaskan dalam Repository ini masih dalam proses pengembangan, artinya masih ada beberapa service yang progressnya masih 50% jadi, kedepannya akan dikembangkan lagi.
 
+Update: Progress telah mencapai 99%, dan ada kemungkinan masih akan dikembangkan lagi kedepannya
+
 Progress:
 - 19 November 2024: Penentuan tema yang di Install
 - 29 November 2024: Penyelesaian tahap pertama
