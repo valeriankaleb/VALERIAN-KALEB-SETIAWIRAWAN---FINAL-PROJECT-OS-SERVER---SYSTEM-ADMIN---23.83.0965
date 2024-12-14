@@ -28,7 +28,7 @@ Progress:
 3. [Instalasi dan Konfigurasi Database Server](#3-instalasi-dan-konfigurasi-database-server)
 4. [Instalasi dan Konfigurasi Web Server](#4-instalasi-dan-konfigurasi-web-server)
 5. [Instalasi dan Konfigurasi DNS Server](#5-instalasi-dan-konfigurasi-dns-server)
-   
+6. [Pengaplikasian website](#6-Pengaplikasian-website)
 
 ## 1. Instalasi dan Konfigurasi SSH Server
 Kita akan menggunakan SSH agar mempermudah kita dalam mengontrol dan memodifikasi server secara remote
@@ -651,20 +651,20 @@ systemctl restart apache2
 ![image](SS/Tampilan/H2.png)
 
 #### Tampilan Detail Makanan
-![image](ss/Tampilan/D1.png)
-![image](ss/Tampilan/D2.png)
+![image](SS/Tampilan/D1.png)
+![image](SS/Tampilan/D2.png)
 
 #### Tampilan Keranjang
-![image](ss/Tampilan/C1.png)
-![image](ss/Tampilan/C2.png)
+![image](SS/Tampilan/C1.png)
+![image](SS/Tampilan/C2.png)
 
 #### Tampilan About
-![image](ss/Tampilan/A1.png)
-![image](ss/Tampilan/A2.png)
-![image](ss/Tampilan/A3.png)
+![image](SS/Tampilan/A1.png)
+![image](SS/Tampilan/A2.png)
+![image](SS/Tampilan/A3.png)
 
 #### Tampilan Login
-![image](ss/Tampilan/login.png)
+![image](SS/Tampilan/login.png)
 
 #### Tampilan Registrasi
-![image](ss/Tampilan/Registration.png)
+![image](SS/Tampilan/Registration.png)
