@@ -11,6 +11,15 @@ Progress:
 - 7 December 2024: Penyelesaian tahap kedua
 - 14 December 2024: Penyelesaian tahap ketiga
 
+# Versi layanan yang digunakan
+Mysql: mysql  Ver 8.0.40-0ubuntu0.22.04.1 for Linux on x86_64
+PHP: PHP 8.1.2-1ubuntu2.20 (cli)
+Apache: Apache/2.4.52 (Ubuntu)
+Operation System: Ubuntu Server 22.04 LTS
+vsftpd: version 3.0.5
+Bind9: BIND 9.18.28-0ubuntu0.22.04.1-Ubuntu (Extended Support Version)
+OpenSSH: OpenSSH_8.9p1 Ubuntu-3ubuntu0.10
+
 ## Daftar Isi
 1. [Instalasi dan Konfigurasi SSH](#1-instalasi-dan-konfigurasi-ssh-server)
 2. [Instalasi dan Konfigurasi FTP server vsftpd](#2-Instalasi-dan-Konfigurasi-FTP-server-vsftpd)
@@ -20,7 +29,7 @@ Progress:
    
 
 ## 1. Instalasi dan Konfigurasi SSH Server
-
+Kita akan menggunakan SSH agar mempermudah kita dalam mengontrol dan memodifikasi server secara remote
 ### 1.1 Instalasi SSH
 **Langkah 1: Lakukan Update paket Ubuntu**
 ```
@@ -78,6 +87,7 @@ ufw enable
 ```
 
 ## 2. Instalasi dan Konfigurasi FTP server vsftpd
+Kita akan menginstall FTP server untuk mentransfer file antar Ubuntu dengan windows melalui jaringan lokal. Sementara itu, vsftpd (Very Secure FTP Daemon) adalah server FTP yang dapat meningkatkan keamanan, kinerja, dan stabilitas.
 
 ### 2.1 Instalasi vsftpd
 
@@ -181,6 +191,11 @@ systemctl restart vsftpd
 FTP Server ini adalah Tampilan dari FTP client(Menggunakan Filezila)
 ![FTP12](SS/FTP/12.png)
 
+Jika FTP tidak dapat terhubung, coba matikan ufw firewall dengan cara
+```
+ufw disable
+```
+
 ## 3. Instalasi dan Konfigurasi Database Server
 Dalam proyek ini, saya melakukan instalasi database server menggunakan MySQL, sebuah sistem manajemen basis data open-source yang kuat. MySQL digunakan untuk menyimpan dan mengelola data yang diperlukan oleh aplikasi dan situs web. Saya juga menginstal phpMyAdmin, antarmuka web yang memudahkan administrasi dan manajemen database MySQL, memungkinkan pengguna untuk dengan mudah membuat, mengedit, dan mengelola basis data melalui antarmuka berbasis web yang intuitif.
 
@@ -202,11 +217,7 @@ systemctl status mysql.service
 ![Database3](SS/Database/3.png)
 
 ### 3.2 Konfigurasi MySQL
-**Langkah 1: Jalankan Perintah ini**
-```
-mysql_secure_installation
-```
-**Langkah 2: Ikuti Konfigurasi dibawah ini**
+**Langkah 1: Ikuti Konfigurasi dibawah ini**
 
 Peringatan: Mulai Juli 2022, sebuah kesalahan akan terjadi ketika Anda menjalankan skrip `mysql_secure_installation` tanpa konfigurasi lebih lanjut. Alasannya adalah skrip ini akan mencoba mengatur kata sandi untuk akun MySQL root instalasi, tetapi, secara default pada instalasi Ubuntu, akun ini tidak dikonfigurasikan untuk terhubung menggunakan kata sandi.
 
