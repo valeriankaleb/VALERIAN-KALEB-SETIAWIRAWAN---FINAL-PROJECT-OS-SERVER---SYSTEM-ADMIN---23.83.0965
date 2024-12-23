@@ -468,6 +468,7 @@ Buka phpmyadmin and buatlah sebuah database
 ![Web20](SS/Web/20.png)
 
 Dikarenakan saya sudah membuat tabel sebelumnya, disini saya akan melakukan import tabel ke database saja untuk mempermudah
+
 ![Web21](SS/Web/21.png)
 ![Web22](SS/Web/22.png)
 
