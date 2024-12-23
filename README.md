@@ -1,10 +1,11 @@
 ## VALERIAN KALEB SETIAWIRAWAN---FINAL-PROJECT-OS-SERVER-&-SYSTEM-ADMIN---23.83.0965
 # Judul : Instalasi layanan server untuk hosting web delivery makanan
 
-Repository ini berisi Dokumentasi Instalasi dan Konfigurasi berbagai layanan Server, seperti SSH, DNS, FTP, WEB, Database, dll. Saya menggunakan Ubuntu Server versi 22.04 sebagai base operasi sistem saya.
+Repository ini berisi Dokumentasi Instalasi dan Konfigurasi berbagai layanan Server, seperti SSH, Prometheus, FTP, WEB, Database. Saya menggunakan Ubuntu Server versi 22.04 sebagai base operasi sistem saya.
 Beberapa Service yang dijelaskan dalam Repository ini masih dalam proses pengembangan, artinya masih ada beberapa service yang progressnya masih 50% jadi, kedepannya akan dikembangkan lagi.
 
 Update: Progress telah mencapai 99%, dan ada kemungkinan masih akan dikembangkan lagi kedepannya
+Update: Progress kurang lebih telah selesai 100%
 
 Progress:
 - 19 November 2024: Penentuan tema yang di Install
@@ -12,6 +13,7 @@ Progress:
 - 3 December 2024: Pergantian Tema
 - 7 December 2024: Penyelesaian tahap kedua
 - 14 December 2024: Penyelesaian tahap ketiga
+- 24 December 2024: Penyelesaian
 
 # Versi layanan yang digunakan
 1. Mysql: mysql  Ver 8.0.40-0ubuntu0.22.04.1 for Linux on x86_64
@@ -21,14 +23,14 @@ Progress:
 5. vsftpd: version 3.0.5
 6. Bind9: BIND 9.18.28-0ubuntu0.22.04.1-Ubuntu (Extended Support Version)
 7. OpenSSH: OpenSSH_8.9p1 Ubuntu-3ubuntu0.10
+8. Grafana: Version 11.4.0
 
 ## Daftar Isi
 1. [Instalasi dan Konfigurasi SSH](#1-instalasi-dan-konfigurasi-ssh-server)
 2. [Instalasi dan Konfigurasi FTP server vsftpd](#2-Instalasi-dan-Konfigurasi-FTP-server-vsftpd)
 3. [Instalasi dan Konfigurasi Database Server](#3-instalasi-dan-konfigurasi-database-server)
 4. [Instalasi dan Konfigurasi Web Server](#4-instalasi-dan-konfigurasi-web-server)
-5. [Instalasi dan Konfigurasi DNS Server](#5-instalasi-dan-konfigurasi-dns-server)
-6. [Pengaplikasian website](#6-Pengaplikasian-website)
+5. [Instalasi dan Konfigurasi Grafana](#5-instalasi-dan-konfigurasi-grafana)
 
 ## 1. Instalasi dan Konfigurasi SSH Server
 Kita akan menggunakan SSH agar mempermudah kita dalam mengontrol dan memodifikasi server secara remote
@@ -387,9 +389,11 @@ ufw status
 Jika Konfigurasi Berhasil seharusnya muncul layanan web default seperti gambar dibawah ini:
 ![Web8](SS/Web/8.png)
 
-### 4.3 Konfigurasi CMS Wordpress pada Apache2
+### 4.3 Konfigurasi Website pribadi pada Apache2
+Disini saya tidak menggunakan wordpress, melainkan saya akan mencontohkan bagaimana cara memasang website sendiri kedalam apache2.
 
 **Langkah 1: Melakukan Instalasi PHP**
+Pertama kita akan minstall php terlebih dahulu karena file website yang saya gunakan adalah .php bukan .html
 ```
 sudo apt install -y php libapache2-mod-php php-{common,mysql,xml,xmlrpc,curl,gd,imagick,cli,dev,imap,mbstring,opcache,soap,zip,intl}
 ```
@@ -405,247 +409,204 @@ php -v
 
 Untuk ini sudah dibuat bab lain jadi anda bisa cek ke [Instalasi dan Konfigurasi Database Server](#3-instalasi-dan-konfigurasi-database-server)
 
-**Langkah 3: Buat Database untuk wordpress**
-
-login ke Database Terlebih dahulu:
+**Langkah 3: Konfigurasi Website di Apache2**
+Pertama, import / masukkan file web kalian kedalam linux ubuntu. Bisa menggunakan ftp, tetapi disini saya mencontohkan dengan git clone
 ```
-mysql -u root -p
+cd /tmp && git clone "nama repositori"
 ```
 ![Web11](SS/Web/11.png)
 
-buat database untuk Wordpress dan berikan password sesuai keinginan anda
+**Langkah 4: Salin direktori web ke dalam direktori /var/www/html.**
 ```
-CREATE DATABASE wordpress;
-CREATE USER 'wordpressuser'@'localhost' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpressuser'@'localhost';
-FLUSH PRIVILEGES;
-EXIT;
+cp -R "nama folder hasil git clone" /var/www/html/
 ```
 ![Web12](SS/Web/12.png)
+
+**Langkah 5: Mengubah kepemilikan direktori /var/www/html/Warung. dan Memodifikasi izin file.**
+```
+chown -R www-data:www-data /var/www/html/Warung/
+chmod -R 755 /var/www/html/Warung/
+```
 ![Web13](SS/Web/13.png)
-![Web14](SS/Web/14.png)
 
-**Langkah 4: Download dan Extract Paket Wordpress**
-```
-cd /tmp && wget https://wordpress.org/latest.tar.gz
-tar -xvf latest.tar.gz
-```
-![Web15](SS/Web/15.png)
-![Web16](SS/Web/16.png)
-
-**Langkah 5: Salin direktori wordpress ke dalam direktori /var/www/html.**
-```
-cp -R wordpress /var/www/html/
-```
-![Web17](SS/Web/17.png)
-
-**Langkah 6: Mengubah kepemilikan direktori /var/www/html/wordpress. dan Memodifikasi izin file.**
-```
-chown -R www-data:www-data /var/www/html/wordpress/
-chmod -R 755 /var/www/html/wordpress/
-```
-![Web18](SS/Web/18.png)
-
-**Langkah 8: Salin wp-config-sample.php dan ubah kepemilikan berkas wp-config.php.**
-```
-cd /var/www/html/wordpress
-cp wp-config-sample.php wp-config.php
-chown www-data:www-data wp-config.php
-```
-![Web19](SS/Web/19.png)
-
-**Langkah 9: Edit file wp-config.php dan tambahkan baris di bawah ini pada file wp-config.php.**
-```
-nano wp-config.php
-```
-![Web20](SS/Web/20.png)
-![Web21](SS/Web/21.png)
-
-**Langkah 10: Tambahkan secure values dari wordpress secret key generator**
-```
-curl -s https://api.wordpress.org/secret-key/1.1/salt/
-```
-Salin nilai ini dan tambahkan di file wp-config.php
-![Web22](SS/Web/22.png)
-![Web23](SS/Web/23.png)
-
-**Langkah 11: Konfigurasikan apache untuk memuat situs wordpress.**
-```
-cd /etc/apache2/sites-available
-cp 000-default.conf wordpress.conf
-```
-![Web24](SS/Web/24.png)
-
-Masuk kedalam file wordpress.conf
-```
-nano wordpress.conf
-```
-![Web25](SS/Web/25.png)
-
-Edit file wordpress.conf dan tambahkan baris di bawah ini
-![Web26](SS/Web/26.png)
-
-Aktifkan WordPress.conf dan muat ulang layanan apache.
-```
-a2ensite wordpress.conf
-systemctl reload apache2
-```
-![Web27](SS/Web/27.png)
-
-**Langkah 12: Instalasi Admin Wordpress**
-
-1. Buka web wordpress pada browser dengan mengetikkan
-```
-http://your_domain_or_IP/wordpress
-```
-pada kolom pencarian
-
-2. Pilih Bahasa yang diinginkan 
-![Web28](SS/Web/28.png)
-
-3. Isi Nama situs,Password,dan Email
-![Web29](SS/Web/29.png)
-
-4. Login dengan Akun yang sudah dibuat
-![Web30](SS/Web/30.png)
-
-5. CMS sudah Berhasil diinstall
-![Web31](SS/Web/31.png)
-
-
-### 4.4 Pengujian Konfigurasi Apache2
-
-Uji coba tampilan pada webserver
-
-![Web32](SS/Web/32.png)
-
-## 5. Instalasi dan Konfigurasi DNS Server
-
-### 5.1 Instalasi BIND9
-
-**Langkah 1: Instalasi Paket bind9**
-```
-apt update
-apt-get install bind9
-```
-![DNS1](SS/DNS/1.png)
-![DNS2](SS/DNS/2.png)
-
-### 5.2 Konfigurasi BIND9
-
-**Langkah 1: copy file untuk Konfigurasi "Forward" dan "Reverse"**
-```
-cd /etc/bind
-cp db.local db.forward
-cp db.127 db.reverse
-```
-![DNS3](SS/DNS/3.png)
-
-**Langkah 2: Konfigurasi file db.forward**
-```
-nano db.forward
-```
-![DNS4](SS/DNS/4.png)
-
-Ubahlah Konfigurasi seperti dibawah ini:
-![DNS5](SS/DNS/5.png)
-
-disesuaikan dengan domain anda
-
-**Langkah 3: Konfigurasi file db.reverse**
-```
-nano db.reverse
-```
-![DNS6](SS/DNS/6.png)
-
-ubahlah Konfigurasi seperti dibawah ini:
-![DNS7](SS/DNS/7.png)
-
-**Langkah 4: Buka Konfigurasi named.conf.local untuk konfigurasi DNS Zones**
-```
-nano named.conf.local
-```
-![DNS8](SS/DNS/8.png)
-
-Ubahlah isi file konfigurasi seperti dibawah ini:
-![DNS9](SS/DNS/9.png)
-
-**Langkah 5: Konfigurasi Forwarders**
-```
-nano named.conf.options
-```
-![DNS10](SS/DNS/10.png)
-
-tambahkan DNS forwarders
-![DNS11](SS/DNS/11.png)
-
-**Langkah 6: Konfigurasi DNS diperangkat Server**
-```
-nano /etc/resolv.conf
-```
-![DNS12](SS/DNS/12.png)
-
-ubahlah jadi seperti ini:
-
-![DNS13](SS/DNS/13.png)
-
-**Langkah 7: Restart Layanan Bind9**
-```
-systemctl restart bind9
-```
-![DNS14](SS/DNS/14.png)
-
-### 5.3 Pengujian Konfigurasi DNS
-
-**Langkah 1: Instalasi paket dns resolver**
-```
-apt-get install dnsutils
-```
-**Langkah 2: Lakukan pengujian dengan nslookup**
-![DNS15](SS/DNS/15.png)
-![DNS16](SS/DNS/16.png)
-
-ini menunjukkan bahwa Konfigurasi DNS untuk mengubah alamat domain ke IP dan sebaliknya(foward&reverse) sudah berjalan dengan baik
-
-## 6. Pengaplikasian website
-dikarenakan saya akan menggunakan tampilan website sendiri, saya akan menampilkan website menggunakan apache2 langsung.
-
-### 6.1 Konfigurasi file kedalam ubuntu
-
-**Langkah 1: pemindahan file**
-Kita dapat memindahkan file html yang telah dibuat dengan menggunakan Filezilla FTP, atau dengan git clone website yang telah dibuat (disini saya menggunakan git clone saja).
-```
-cd /tmp && git clone "nama repository"
-```
-
-**Langkah 2: salin direktori html kedalam direktori /var/www/html.**
-```
-cp -R "nama direktori web" /var/www/html/
-```
-
-**Langkah 3: Mengubah kepemilikan direktori web. dan Memodifikasi izin file.**
-```
-chown -R www-data:www-data /var/www/html/"nama direktori web"/
-chmod -R 755 /var/www/html/"nama direktori web"/
-```
-
-**Langkah 4: Konfigurasikan apache untuk memuat web.**
+**Langkah 6: Konfigurasikan apache untuk memuat situs **
 ```
 cd /etc/apache2/sites-available
 cp 000-default.conf web.conf
 ```
-Masuk kedalam file web.conf dan ganti DocumentRoot menjadi halaman web mu
+![Web14](SS/Web/14.png)
+
+Masuk kedalam file web.conf
 ```
 nano web.conf
-DocumentRoot /var/www/html/"nama direktori web"
 ```
-Aktifkan web.conf dan muat ulang layanan apache.
+![Web15](SS/Web/15.png)
+
+Edit file web.conf
+
+![Web16](SS/Web/16.png)
+
+Aktifkan web.conf dan non aktifkan 000-default.conf lalu muat ulang layanan apache.
 ```
 a2ensite web.conf
-systemctl reload apache2
+a2dissite 000-default.conf
+service apache2 reload
+```
+![Web17](SS/Web/17.png)
+
+**Langkah 7: Mengkoneksikan dengan phpmyadmin.**
+dikarenakan saya membuat web menggunakan php untuk mengaitkan dengan phpmyadmin, kita perlu melakukan beberapa konfigurasi terlebih dahulu.
+
+Buka file dimana kita mengkoneksikan web dengan phpmyadmin (Kalau saya menggunakan file koneksi.php)
+![Web18](SS/Web/18.png)
+
+Pastikan nama database, dan username, serta password telah sama dengan yang kita konfigurasikan sebelumnya
+![Web19](SS/Web/19.png)
+
+**Langkah 8: Membuat tabel phpmyadmin.**
+Buka phpmyadmin and buatlah sebuah database
+![Web20](SS/Web/20.png)
+
+Dikarenakan saya sudah membuat tabel sebelumnya, disini saya akan melakukan import tabel ke database saja untuk mempermudah
+![Web21](SS/Web/21.png)
+![Web22](SS/Web/22.png)
+
+**Langkah 8: uji coba**
+Buka web pada browser dengan mengetikkan
+```
+http://your_domain_or_IP
+```
+![Web23](SS/Web/23.png)
+
+Web telah aktif dengan benar (disini website saya masuk ke halaman login terlebih dahulu dikarenakan saya membuatnya user harus melakukan login terlebih dahulu sebelum masuk kedalam index.php)
+![Web24](SS/Web/24.png)
+
+Tes masuk ke halaman index.php telah berhasil dan website telah dijalankan dengan server lokal
+
+## 5. Instalasi dan Konfigurasi Grafana
+Saya akan melakukan instalasi dan konfigurasi monitoring server. ini dilakukan untuk pemantauan sumber daya server seperti CPU, memory, dan lainnya menggunakan Prometheus dan Grafana. Dengan alat-alat ini, saya akan memastikan server berjalan dengan baik, serta melacak dan menganalisis log untuk deteksi masalah dan pemecahan masalah yang lebih baik.
+
+### 5.1 Instalasi Prometheus,node-exporter,Loki,promtail dan Grafana
+**Langkah 1: Instalasi paket Prometheus dan Node-exporter**
+```
+apt-get install prometheus prometheus-node-exporter
 ```
 
-### 6.2 Tampilan web
+![Grafana1](SS/Grafana/1.png)
+
+**Langkah 2: Instalasi Paket Grafana**
+```
+cd /tmp && wget -q -O /usr/share/keyrings/grafana.key https://packages.grafana.com/gpg.key
+echo "deb [signed-by=/usr/share/keyrings/grafana.key] https://packages.grafana.com/oss/deb stable main" | tee -a /etc/apt/sources.list.d/grafana.list
+apt-get update
+apt-get install grafana
+```
+
+![Grafana2](SS/Grafana/2.png)
+![Grafana3](SS/Grafana/3.png)
+![Grafana4](SS/Grafana/4.png)
+
+![Grafana5](SS/Grafana/5.png)
+
+### 5.2 Konfigurasi Prometheus
+**Langkah 1: Masuk ke direktori utama prometheus**
+```
+nano /etc/prometheus/prometheus.yml
+```
+![Grafana6](SS/Grafana/6.png)
+
+**Langkah 2: Tambahkan Monitoring target untuk membuat metrics dari node-exporter**
+menggunakan port default yaitu 9100,anda bisa menganti ini
+
+![Grafana7](SS/Grafana/7.png)
+
+**Langkah 3: cek ke halaman web anda http://Domain atau IP anda:9100**
+![Grafana8](SS/Grafana/8.png)
+ini resource sudah berhasil diexport matricsnya oleh node-exporter
+
+**Langkah 4: cek juga ke halaman web http://Domain atau IP anda:9090**
+![Grafana9](SS/Grafana/9.png)
+dengan begini maka matrics berhasil diexport ke prometheus,sekarang langkah selanjutnya adalah memvisualisasikan metrics tersebut dengan Grafana
+
+### 5.3 Konfigurasi Grafana untuk Visualisasi data Resource dari Node Exporter
+**Langkah 1: Buka Konfigurasi utama Grafana**
+```
+nano /etc/grafana/grafana.ini
+```
+![Grafana10](SS/Grafana/10.png)
+
+**Langkah 2: Edit Konfigurasi ini**
+```
+[server]
+
+#hilangkan tanda ";"
+;protocol = http
+
+# This is the minimum TLS version allowed. By default, this value is empty. Accepted values are: TLS1.2, TLS1.3. If not>;min_tls_version = ""
+
+# The ip address to bind to, empty will bind to all interfaces
+;http_addr =
+
+#hilangkan tanda ";" jika ingin ganti port
+;http_port = 3000
+
+#hilangkan tanda ";" jika ingin diakses dengan domain/sub domain tertentu
+;domain = localhost
+
+# Redirect to correct domain if host header does not match domain
+# Prevents DNS rebinding attacks
+;enforce_domain = false
+```
+
+**Langkah 3: Nyalakan Server Grafana**
+```
+sudo systemctl start grafana-server
+sudo systemctl status grafana-server
+```
+![Grafana11](SS/Grafana/11.png)
+
+**Langkah 4: Buka halaman web http://Domain atau IP anda:3000**
+![Grafana12](SS/Grafana/12.png)
+Disini silahkan masukkan password default nya, Username: admin Password: admin
+
+**Langkah 5: Ganti password Default nya**
+![Grafana13](SS/Grafana/13.png)
+
+**Langkah 6: Masuk ke menu "Administration"**
+![Grafana14](SS/Grafana/14.png)
+
+**Langkah 7: klik "Go to Connections"**
+![Grafana15](SS/Grafana/15.png)
+![Grafana16](SS/Grafana/16.png)
+
+**Langkah 8: Add data Source dan cari Prometheus**
+![Grafana17](SS/Grafana/17.png)
+![Grafana18](SS/Grafana/18.png)
+
+**Langkah 9: Masukkan URL sesuai port prometheus anda**
+![Grafana19](SS/Grafana/19.png)
+
+lalu klik save
+
+![Grafana20](SS/Grafana/20.png)
+
+**Langkah 10: Dashboard > Import**
+![Grafana21](SS/Grafana/21.png)
+
+**Langkah 11: copy id atau Json dari Dashboard Grafana dan klik Load**
+![Grafana22](SS/Grafana/22.png)
+Disini saya menggunakan Dashboard Node-exporter dari Grafana agar mempercepat Konfigurasi anda bisa cek dashboard yang saya gunakan di "https://bit.ly/DashboardGrafana"
+
+![Grafana23](SS/Grafana/23.png)
+
+**Langkah 12: Ambil Source Matrics dari Prometheus dan klik Import**
+![Grafana24](SS/Grafana/24.png)
+
+**Langkah 13: Tampilan dari Monitoring Resouce anda**
+![Grafana25](SS/Grafana/25.png)
+
+
+## Tampilan Website
 #### Tampilan Home/Awal
 ![image](SS/Tampilan/H1.png)
 ![image](SS/Tampilan/H2.png)
