@@ -486,7 +486,7 @@ Tes masuk ke halaman index.php telah berhasil dan website telah dijalankan denga
 ## 5. Instalasi dan Konfigurasi Grafana
 Saya akan melakukan instalasi dan konfigurasi monitoring server. ini dilakukan untuk pemantauan sumber daya server seperti CPU, memory, dan lainnya menggunakan Prometheus dan Grafana. Dengan alat-alat ini, saya akan memastikan server berjalan dengan baik, serta melacak dan menganalisis log untuk deteksi masalah dan pemecahan masalah yang lebih baik.
 
-### 5.1 Instalasi Prometheus,node-exporter,Loki,promtail dan Grafana
+### 5.1 Instalasi Prometheus,node-exporter, dan Grafana
 **Langkah 1: Instalasi paket Prometheus dan Node-exporter**
 ```
 apt-get install prometheus prometheus-node-exporter
